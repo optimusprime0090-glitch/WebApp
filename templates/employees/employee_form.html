@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form_title }} — Employee Management{% endblock %}
+<!-- form_title is passed by the view: "Add New Employee" or "Edit Employee — John" -->
+
+{% block content %}
+
+  <!-- ===== BREADCRUMB ===== -->
+  <!-- Breadcrumb shows the user where they are in the site hierarchy -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'employee-list' %}">Employees</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ form_title }}</li>
+    </ol>
+  </nav>
+
+  <!-- ===== FORM CARD ===== -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card">
+
+        <div class="card-header bg-primary text-white">
+          <i class="bi bi-person-fill me-2"></i>{{ form_title }}
+        </div>
+
+        <div class="card-body">
+
+          <!-- method="post" — form data is sent in the request body, not the URL.
+               Always use POST for forms that change data (create/update).
+               action="" — empty action means submit to the CURRENT URL,
+               which is correct because the same URL handles both GET and POST. -->
+          <form method="post" action="" novalidate>
+
+            <!-- CSRF token is REQUIRED for every POST form in Django.
+                 Inserts a hidden input with a security token that Django validates
+                 on the server side. Without it, Django rejects the POST with a 403.
+                 This protects against Cross-Site Request Forgery attacks. -->
+            {% csrf_token %}
+
+            <!-- ===== NAME FIELD ===== -->
+            <div class="mb-3">
+              <!-- label_tag renders: <label for="id_name">Employee Name</label>
+                   The 'for' attribute links the label to the input for accessibility -->
+              <label for="{{ form.name.id_for_label }}" class="form-label fw-semibold">
+                {{ form.name.label }}
+              </label>
+
+              <!-- The input field itself — Bootstrap 'form-control' class
+                   is already set in forms.py via the widget attrs -->
+              {{ form.name }}
+
+              <!-- Django adds error messages here if validation fails.
+                   e.g. "This field is required." or "Ensure this value has at most 100 characters." -->
+              {% if form.name.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.name.errors %}
+                    <div><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- ===== DEPARTMENT FIELD ===== -->
+            <div class="mb-3">
+              <label for="{{ form.department.id_for_label }}" class="form-label fw-semibold">
+                {{ form.department.label }}
+              </label>
+              {{ form.department }}
+              {% if form.department.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.department.errors %}
+                    <div><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- ===== SALARY FIELD ===== -->
+            <div class="mb-3">
+              <label for="{{ form.salary.id_for_label }}" class="form-label fw-semibold">
+                {{ form.salary.label }}
+              </label>
+              {{ form.salary }}
+              {% if form.salary.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.salary.errors %}
+                    <div><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <!-- help_text is set in forms.py Meta.help_texts -->
+              {% if form.salary.help_text %}
+                <div class="form-text text-muted">{{ form.salary.help_text }}</div>
+              {% endif %}
+            </div>
+
+            <!-- ===== FORM-WIDE ERRORS ===== -->
+            <!-- Non-field errors are validation errors that don't belong
+                 to a specific field (e.g. custom cross-field validation) -->
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                  <div>{{ error }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <!-- ===== ACTION BUTTONS ===== -->
+            <div class="d-flex gap-2 mt-4">
+              <!-- Submit button — button_label is passed by the view:
+                   "Save Employee" for create, "Update Employee" for edit -->
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle me-1"></i>{{ button_label }}
+              </button>
+              <!-- Cancel takes the user back to the list without saving -->
+              <a href="{% url 'employee-list' %}" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle me-1"></i>Cancel
+              </a>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

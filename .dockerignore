@@ -1,0 +1,40 @@
+# Virtual environment — never include in Docker image
+venv/
+.venv/
+env/
+
+# Local secrets — real values come from App Service environment variables
+.env
+
+# Git
+.git/
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local database
+db.sqlite3
+
+# Deployment artifacts
+deploy.zip
+*.zip
+make_zip.ps1
+
+# Logs
+*.log
+logs/
+latest_logs/
+diag_logs/
+app_logs/
+
+# Windows/IDE
+.vscode/
+Thumbs.db
+desktop.ini
+
+# collectstatic output — rebuilt inside Docker during build
+staticfiles/

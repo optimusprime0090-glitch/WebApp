@@ -1,0 +1,53 @@
+# =============================================================================
+# .gitignore for Django + Azure App Service deployment
+# =============================================================================
+
+# --- Secrets & Environment ---------------------------------------------------
+# NEVER commit these — they contain passwords and secret keys
+.env
+*.env
+.env.*
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# --- Virtual Environment -----------------------------------------------------
+# Azure App Service installs packages from requirements.txt itself
+# Committing venv adds hundreds of MB of unnecessary files
+venv/
+env/
+.venv/
+ENV/
+
+# --- Django Generated Files --------------------------------------------------
+# collectstatic output — Azure runs collectstatic via startup.sh
+staticfiles/
+
+# Local SQLite database — we use Azure SQL in production
+db.sqlite3
+
+# Django media uploads (not applicable here but good practice)
+media/
+
+# --- IDE & OS ----------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Build & Distribution ----------------------------------------------------
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# --- Logs --------------------------------------------------------------------
+*.log
+logs/

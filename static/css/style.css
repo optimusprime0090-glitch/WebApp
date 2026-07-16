@@ -1,0 +1,180 @@
+/* =============================================================
+   Employee Management System — Custom Stylesheet
+   Loads after Bootstrap, so these rules override Bootstrap defaults.
+   ============================================================= */
+
+/* --- Page Layout ------------------------------------------- */
+
+/* Make the body fill the full viewport height so the footer
+   stays at the bottom even on short pages. */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;  /* Bootstrap's light gray, keeps it consistent */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Push footer to the bottom when content is short */
+main {
+  flex: 1;
+}
+
+/* --- Navbar ------------------------------------------------- */
+
+.navbar-brand {
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- Cards -------------------------------------------------- */
+
+/* Cards are used to wrap forms and the employee table.
+   A subtle shadow and rounded corners give a modern look. */
+.card {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* --- Table -------------------------------------------------- */
+
+/* Slightly larger row height for readability */
+.table td, .table th {
+  vertical-align: middle;
+  padding: 0.85rem 1rem;
+}
+
+.table thead th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Highlight hovered row so users can track which row they're on */
+.table-hover tbody tr:hover {
+  background-color: #e8f0fe;
+  cursor: default;
+}
+
+/* --- Buttons ------------------------------------------------ */
+
+/* Slightly rounded buttons feel more modern than Bootstrap's default */
+.btn {
+  border-radius: 0.5rem;
+}
+
+/* Small action buttons in the table (edit / delete) */
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.65rem;
+}
+
+/* --- Forms -------------------------------------------------- */
+
+/* Extra breathing room between form fields */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Subtle focus ring to improve accessibility feedback */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
+/* --- Hero / Home Page --------------------------------------- */
+
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  color: white;
+  border-radius: 0.75rem;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Stat cards on the home page */
+.stat-card {
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.stat-card .stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-card .stat-label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 0.25rem;
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.75;
+}
+
+/* --- Delete confirmation page ------------------------------ */
+
+.delete-card {
+  max-width: 540px;
+  margin: 2rem auto;
+}
+
+/* --- Breadcrumb -------------------------------------------- */
+
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+/* --- Responsive tweaks ------------------------------------- */
+
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.8rem;
+  }
+
+  /* Stack action buttons vertically on very small screens */
+  .action-buttons .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+}
